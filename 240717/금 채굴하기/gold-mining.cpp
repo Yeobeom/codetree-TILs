@@ -21,7 +21,7 @@ int main(int argc, char** argv)
 			goldCount += mine[y][x];
 		}
 	}
-	int maxGold = 1;
+	int maxGold = (goldCount > 0);
 	int k = 1;
 
 	while ((k * k + (k + 1) * (k + 1)) <= (goldCount * m))
