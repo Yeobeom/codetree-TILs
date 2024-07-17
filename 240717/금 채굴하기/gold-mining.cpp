@@ -9,63 +9,69 @@ static int inline cost(int k)
 	return (k * k + (k + 1) * (k + 1));
 }
 
+static bool inline IsRange(int y, int x, int& n)
+{
+	return y < n && y >= 0 && x < n && x >= 0;
+}
+
+int dy[] = { 1, 1, -1, -1 };
+int dx[] = { -1,1, 1, -1 };
+int sy[] = { -1,0, 1, 0 };
+int sx[] = {0,-1, 0, 1 };
+
+int GetGoldBorderCount(int y, int x, int& k, int& n)
+{
+	int ret = 0;
+	for (int dir = 0; dir < 4; dir++)
+	{
+		int ty = y + sy[dir] * k;
+		int tx = x + sx[dir] * k;
+		for (int i = 0; i < k; i++)
+		{
+			if (IsRange(ty, tx, n)) ret += mine[ty][tx];
+			ty += dy[dir];
+			tx += dx[dir];
+		}
+	}
+	return ret;
+}
+
 int main(int argc, char** argv)
 {
 	std::ios::sync_with_stdio(false);
 	std::cin.tie(NULL), std::cout.tie(NULL);
 
-	int n, m, goldCount;
+	int n, m;
 	std::cin >> n >> m;
 
-	goldCount = 0;
-	for (int y = 0; y < n; y++)
+
+	for (int y = 0; y < n; ++y)
 	{
-		for (int x = 0; x < n; x++)
+		for (int x = 0; x < n; ++x)
 		{
 			std::cin >> mine[y][x];
-			goldCount += mine[y][x];
 		}
 	}
-	int maxGold = (goldCount > 0);
-	int k = 1;
 
-	while (cost(k) <= (goldCount * m))
+	int maxK = 2 * (n - 1);
+	int maxGold = 0;
+
+	for (int y = 0; y < n; ++y)
 	{
-		for (int y = 0; y < n; y++)
+		for (int x = 0; x < n; ++x)
 		{
-			for (int x = 0; x < n; x++)
+			int k = 1;
+			int gold = mine[y][x];
+			if (maxGold < gold) maxGold = gold;
+			while (k <= maxK)
 			{
-				int currentGold = 0;
-				int dx = 0;
-				for (int yy = y - k; yy < y; yy++)
-				{
-					for (int xx = x - dx; xx <= x + dx; xx++)
-					{
-						if (yy < 0 || yy >= n || xx < 0 || xx >= n) continue;
-						currentGold += mine[yy][xx];
-					}
-					dx++;
-				}
-				for (int xx = x - k; xx <= x + k; xx++)
-				{
-					if (y < 0 || y >= n || xx < 0 || xx >= n) continue;
-					currentGold += mine[y][xx];
-				}
-				dx = 0;
-				for (int yy = y + k; yy > y; yy--)
-				{
-					for (int xx = x - dx; xx <= x + dx; xx++)
-					{
-						if (yy < 0 || yy >= n || xx < 0 || xx >= n) continue;
-						currentGold += mine[yy][xx];
-					}
-					dx++;
-				}
-				if (maxGold < currentGold && cost(k) < currentGold * m) maxGold = currentGold;
+				gold += GetGoldBorderCount(y, x, k, n);
+				if (maxGold < gold && cost(k) <= gold*m) maxGold = gold;
+				++k;
 			}
 		}
-		++k;
 	}
+
 	std::cout << maxGold;
 
 	return EXIT_SUCCESS;
