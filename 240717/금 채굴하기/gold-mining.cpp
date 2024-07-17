@@ -36,14 +36,14 @@ int main(int argc, char** argv)
 				{
 					for (int xx = x - dx; xx <= x + dx; xx++)
 					{
-						if (yy < 0 || yy >= n || xx < 0 && xx >= n) continue;
+						if (yy < 0 || yy >= n || xx < 0 || xx >= n) continue;
 						currentGold += mine[yy][xx];
 					}
 					dx++;
 				}
 				for (int xx = x - k; xx <= x + k; xx++)
 				{
-					if (y < 0 || y >= n || xx < 0 && xx >= n) continue;
+					if (y < 0 || y >= n || xx < 0 || xx >= n) continue;
 					currentGold += mine[y][xx];
 				}
 				dx = 0;
@@ -51,12 +51,11 @@ int main(int argc, char** argv)
 				{
 					for (int xx = x - dx; xx <= x + dx; xx++)
 					{
-						if (yy < 0 || yy >= n || xx < 0 && xx >= n) continue;
+						if (yy < 0 || yy >= n || xx < 0 || xx >= n) continue;
 						currentGold += mine[yy][xx];
 					}
 					dx++;
 				}
-
 				if (maxGold < currentGold) maxGold = currentGold;
 			}
 		}
