@@ -11,7 +11,7 @@ int main(int argc, char** argv)
 
 	int n, m, goldCount;
 	std::cin >> n >> m;
-	
+
 	goldCount = 0;
 	for (int y = 0; y < n; y++)
 	{
@@ -47,7 +47,7 @@ int main(int argc, char** argv)
 					currentGold += mine[y][xx];
 				}
 				dx = 0;
-				for (int yy = y + k; yy > y + k; yy--)
+				for (int yy = y + k; yy > y; yy--)
 				{
 					for (int xx = x - dx; xx <= x + dx; xx++)
 					{
