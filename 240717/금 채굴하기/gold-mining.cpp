@@ -4,6 +4,11 @@ constexpr int MAX_N = 21;
 
 int mine[MAX_N][MAX_N];
 
+static int inline cost(int k)
+{
+	return (k * k + (k + 1) * (k + 1));
+}
+
 int main(int argc, char** argv)
 {
 	std::ios::sync_with_stdio(false);
@@ -24,7 +29,7 @@ int main(int argc, char** argv)
 	int maxGold = (goldCount > 0);
 	int k = 1;
 
-	while ((k * k + (k + 1) * (k + 1)) <= (goldCount * m))
+	while (cost(k) <= (goldCount * m))
 	{
 		for (int y = 0; y < n; y++)
 		{
@@ -56,7 +61,7 @@ int main(int argc, char** argv)
 					}
 					dx++;
 				}
-				if (maxGold < currentGold) maxGold = currentGold;
+				if (maxGold < currentGold && cost(k) < currentGold * m) maxGold = currentGold;
 			}
 		}
 		++k;
