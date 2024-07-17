@@ -1,13 +1,8 @@
 #include<iostream>
 
-constexpr int MAX_N = 20;
+constexpr int MAX_N = 21;
 
 int mine[MAX_N][MAX_N];
-
-static int inline cost(int k)
-{
-	return k * k + (k + 1) * (k + 1);
-}
 
 int main(int argc, char** argv)
 {
@@ -28,8 +23,8 @@ int main(int argc, char** argv)
 	}
 	int maxGold = 1;
 	int k = 1;
-	;
-	while (cost(k) <= (goldCount * m))
+
+	while ((k * k + (k + 1) * (k + 1)) <= (goldCount * m))
 	{
 		for (int y = 0; y < n; y++)
 		{
