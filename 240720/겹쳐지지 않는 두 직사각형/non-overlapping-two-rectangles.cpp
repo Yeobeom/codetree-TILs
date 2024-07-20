@@ -1,8 +1,8 @@
 #include<bits/stdc++.h>
 
 constexpr int MAX = 5;
-constexpr int MIN_VALUE = -1000 * 25 - 1;
-constexpr int MAX_SQUARE = 5 * 5 + 4 * 4 + 3 * 3 + 2 * 2 + 1 * 1 + 1;
+constexpr int MIN_VALUE = -0x7f7f7f;
+constexpr int MAX_SQUARE = 0x7f7f7f;
 int board[MAX][MAX];
 
 using Point = std::pair<int, int>;
