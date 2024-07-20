@@ -63,6 +63,7 @@ int main(int argc, char** argv)
 		{
 			if (i == j) continue;
 
+
 			int& tsy = squares[j].first.first.first;
 			int& tsx = squares[j].first.first.second;
 			int& tey = squares[j].first.second.first;
@@ -82,7 +83,7 @@ int main(int argc, char** argv)
 				}
 				if (continueFlag) break;
 			}
-			if (continueFlag) break;
+			if (continueFlag) continue;
 
 			int target = area + tarea;
 			if (maxArea < target)
