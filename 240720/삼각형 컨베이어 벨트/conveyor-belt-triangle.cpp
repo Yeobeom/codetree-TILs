@@ -1,7 +1,10 @@
 #include<bits/stdc++.h>
 
-int belt[400];
-int afterBelt[400];
+constexpr int MAX = 200;
+constexpr int MAX_LENGTH = 3 * MAX;
+
+int belt[MAX_LENGTH];
+int afterBelt[MAX_LENGTH];
 
 int main(int argc, char** argv)
 {
