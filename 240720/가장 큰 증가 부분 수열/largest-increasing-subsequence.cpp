@@ -27,28 +27,29 @@ int main(int argc, char** argv)
 		std::cin >> seq[i];
 	}
 
-	int maxDist = 0;
+	int dpSize = 1;
+	int sum = 0;
+	int maxSum = 0;
 	for (int i = 1; i <= n; i++)
 	{
-		for (int j = i - 1; j >= 0; --j)
+		int* it = std::lower_bound(dp, dp + dpSize, seq[i]);
+		int idx = it - dp;
+		if (idx >= dpSize)
 		{
-			// 만일 현재 인덱스 보다 이전 인덱스가 작다면
-			if (seq[i] > seq[j])
-			{
-				if (dp[i] < dp[j] + seq[i])
-				{
-					dp[i] = dp[j] + seq[i];
-				}
-			}
+			dp[idx] = seq[i];
+			sum += seq[i];
+			dpSize++;
+		}
+		else
+		{
+			if (dp[idx] >= seq[idx]) continue;
+			sum -= dp[idx];
+			sum += seq[i];
+			dp[idx] = seq[i];
 		}
 	}
-	int maxSum = -1;
-	for (int i = 1; i <= n; i++)
-	{
-		if (maxSum < dp[i]) maxSum = dp[i];
-	}
 
-	std::cout << maxSum;
+	std::cout << sum;
 
 	return EXIT_SUCCESS;
 }
