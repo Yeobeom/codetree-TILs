@@ -36,7 +36,7 @@ int main(int argc, char** argv)
 					{
 						for (int tx = sx; tx <= ex; tx++)
 						{
-							if (board[ty][tx] < 0)
+							if (board[ty][tx] <= 0)
 							{
 								isNegative = true;
 								break;
