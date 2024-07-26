@@ -23,8 +23,9 @@ int main(int argc, char** argv)
         clients[i] -= leader;
         ans += 1;
         if (clients[i] <= 0) continue;
-
-        ans += 1 + clients[i] / crew;
+        if (clients[i] < crew) ans += 1;
+        else if (clients[i] % crew == 0) ans += clients[i] / crew;
+        else ans += clients[i] / crew + 1;
     }
 
     std::cout << ans;
