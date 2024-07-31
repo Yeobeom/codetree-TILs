@@ -39,7 +39,7 @@ int main(int argc, char** argv)
 
 	std::string A;
 	std::cin >> A;
-	int ret = A.length() + 1;
+	int ret = A.length() * 100;
 	for (int i = 0; i < A.length() + 1; i++)
 	{
 		std::string en = encoding(A);
