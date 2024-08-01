@@ -1,8 +1,8 @@
 #include <iostream>
 using namespace std;
 
-int blocks[10000];
-int tmp[10000];
+int blocks[100];
+int tmp[100];
 
 int main() {
     int n;
