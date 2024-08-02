@@ -22,8 +22,9 @@ bool Boom()
 				tmpN -= cnt;
 				isBoom = true;
 				for (int j = 1; j <= cnt; j++) bombs[i - j] = 0;
-				cnt = 1;
+				
 			}
+			cnt = 1;
 		}
 		prev = bombs[i];
 	}
