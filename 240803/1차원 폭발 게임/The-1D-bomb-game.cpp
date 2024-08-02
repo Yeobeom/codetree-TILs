@@ -7,6 +7,7 @@ int tmp[201];
 
 bool Boom()
 {
+	if (N == 0) return false;
 	bool isBoom = false;
 	int prev = bombs[0];
 	int cnt = 1;
