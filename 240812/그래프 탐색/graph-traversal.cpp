@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-int N,M;
+int N, M;
 int adj[1001][1001];
 int visited[1001];
 
@@ -9,16 +9,16 @@ void dfs(int v)
 {
     visited[v] = 1;
 
-    for(int next : adj[v])
+    for (int next = 1; next <= N; next++)
     {
-        if(!visited[next]) dfs(next);
+        if(adj[v][next] && !visited[next]) dfs(next);
     }
 }
 
 int main() {
     cin >> N >> M;
-    int u,v;
-    for(int i = 0; i < M; i++)
+    int u, v;
+    for (int i = 0; i < M; i++)
     {
         cin >> u >> v;
         adj[u][v] = adj[v][u] = 1;
@@ -31,7 +31,7 @@ int main() {
         cnt += v;
     }
 
-    cout << cnt;
+    cout << cnt - 1;
 
     return 0;
 }
